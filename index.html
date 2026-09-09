@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUTArena • Технический перерыв</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #08080c;
+      color: #f1f5f9;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .glow-1 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.16) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .glow-2 {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, transparent 70%);
+      bottom: -100px;
+      right: 10%;
+      pointer-events: none;
+    }
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(18, 18, 26, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.25rem;
+      display: inline-block;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-style: italic;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+    }
+    .info-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1rem;
+      margin-bottom: 1.75rem;
+      text-align: left;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: #64748b; font-weight: 600; }
+    .info-val { color: #f1f5f9; font-weight: 700; }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-tg {
+      background: #229ED9;
+      color: #fff;
+    }
+    .btn-tg:hover { background: #1b8ec5; transform: translateY(-1px); }
+    .btn-check {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn-check:hover { background: rgba(255, 255, 255, 0.1); }
+    .check-status {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <div class="card">
+    <div class="logo">FUTARENA.FUN</div>
+    <br/>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Сервер временно недоступен
+    </div>
+
+    <h1>Временный перерыв</h1>
+    <p>Домашний сервер FUTArena временно отключен из-за отсутствия электропитания или планового обслуживания оборудования.</p>
+
+    <div class="info-box">
+      <div class="info-row">
+        <span class="info-label">Причина:</span>
+        <span class="info-val">Отключение питания / Техработы</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Все балансы и турниры:</span>
+        <span class="info-val" style="color: #4ade80;">В полной безопасности</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Ориентир включения:</span>
+        <span class="info-val">В течение 1–2 часов</span>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a href="https://t.me/futarenasport" target="_blank" class="btn btn-tg">
+        📢 Наш Telegram-канал (Новости о запуске)
+      </a>
+      <button onclick="checkSite()" class="btn btn-check" id="checkBtn">
+        🔄 Проверить доступность сайта
+      </button>
+    </div>
+
+    <div class="check-status" id="statusText">Автопроверка каждые 15 сек...</div>
+  </div>
+
+  <script>
+    async function checkSite() {
+      const btn = document.getElementById('checkBtn');
+      const text = document.getElementById('statusText');
+      text.textContent = 'Проверяем связь с сервером...';
+      try {
+        const res = await fetch('https://futarena.fun/api/system-settings/public/partner-stream?t=' + Date.now(), {
+          mode: 'no-cors',
+          cache: 'no-store'
+        });
+        text.textContent = '✅ Сервер онлайн! Перенаправляем на сайт...';
+        setTimeout(() => { window.location.href = 'https://futarena.fun'; }, 1000);
+      } catch (e) {
+        text.textContent = '❌ Сервер пока выключен. Попробуйте чуть позже.';
+      }
+    }
+    setInterval(checkSite, 15000);
+  </script>
+</body>
+</html>
